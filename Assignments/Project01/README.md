@@ -3,7 +3,7 @@
 pip install fastapi psycopg2
 ```
 
-## Api...
+## Api
 ### FindAll
 localhost:8000/find-all
 
