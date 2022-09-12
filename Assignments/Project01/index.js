@@ -47,31 +47,22 @@ const sql = {
 };
 
 //API
-//Make Database Ready
-app.get("/make-database-ready", (req, res) => {
-  let ready = [];
-  client.query(sql.drop_table, (err, resp) => {
-    if (!err) ready.push("Table dropped successfully.");
-    else console.log(err);
-    client.end;
-  });
-  client.query(sql.create_table, (err, resp) => {
-    if (!err) {
-      ready.push("Table Created successfully.");
-    } else console.log(err);
-    client.end;
-  });
-  client.query(sql.copy_csv, (err, resp) => {
-    if (!err) ready.push("Table copied from CVS file.");
-    else console.log(err);
-    client.end;
-  });
-  client.query(sql.update_geom, (err, resp) => {
-    if (!err) {
-      ready.push("Updated GEOMETRY datatype successfully.");
-      res.send(ready);
-    } else console.log(err);
-  });
+//Making Database Ready
+client.query(sql.drop_table, (err, res) => {
+  if (err) console.log(err);
+  client.end;
+});
+client.query(sql.create_table, (err, res) => {
+  if (err) console.log(err);
+  client.end;
+});
+client.query(sql.copy_csv, (err, res) => {
+  if (err) console.log(err);
+  client.end;
+});
+client.query(sql.update_geom, (err, res) => {
+  if (err) console.log(err);
+  client.end;
 });
 
 //Queries

@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import "./App.css";
 import {
   Button,
   Row,
@@ -9,31 +8,21 @@ import {
   InputGroup,
   Spinner,
 } from "react-bootstrap";
-
+//File imports
 import ErrorModal from "./components/ErrorModal";
 import AirportCard from "./components/AirportCard";
 
-function App() {
+export default function App() {
   useEffect(() => {
     document.title = "Airports";
   });
   //New One
-  const [btnColor, setBtnColor] = useState("danger");
-  const [isReady, setIsReady] = useState();
   const [query, setQuery] = useState();
   const [data, setData] = useState();
   const [error, setError] = useState();
   const [show, setShow] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
-  const makeDatabaseReady = async () => {
-    const res = await fetch("http://localhost:8000/make-database-ready", {
-      mode: "cors",
-    });
-    const data = await res.json();
-    setIsReady(data);
-    setBtnColor("success");
-  };
   const handleShow = () => {
     setShow(false);
   };
@@ -51,6 +40,7 @@ function App() {
     } else setData(data);
     setIsLoading(false);
   };
+
   return (
     <>
       <Container className="mb-5 mt-3">
@@ -60,28 +50,7 @@ function App() {
             Airports around the world
           </Col>
         </Row>
-        <hr className="mb-2" />
-        <Row className="justify-content-end mb-3">
-          <Col className="text-end mb-3" sm={6} md={4}>
-            <Button onClick={makeDatabaseReady} variant={btnColor}>
-              Make database ready
-            </Button>
-          </Col>
-          {isReady &&
-            isReady.map((line) => (
-              <Col
-                className="text-success text-end"
-                md={12}
-                lg={12}
-                sm={12}
-                key={line}
-              >
-                {line}
-              </Col>
-            ))}
-        </Row>
-        <hr />
-
+        <hr className="mb-4" />
         <Row>
           <Col>
             <Form.Label htmlFor="basic-url" className="text-muted">
@@ -94,7 +63,7 @@ function App() {
             </Form.Label>
           </Col>
         </Row>
-        <Row className="mt-2 justify-content-center">
+        <Row className="mt-4 justify-content-center">
           <Col md={10}>
             <InputGroup>
               <Form.Control
@@ -127,5 +96,3 @@ function App() {
     </>
   );
 }
-
-export default App;
