@@ -1,16 +1,29 @@
+# Setting up a Project
+
+- This project contains Frontend & Backend.
+- The backend is written in Node.js with supporting packages like Express.js and pg.
+- The frontend is written in React.js.
+
 ## Installation
 
-```
-npm install
-```
+- For backend, type
+  `npm install` in the terminal of this directory.
+- For Frontend, go to the frontend folder and type `npm install` in the terminal.
 
-## Api
+## Starting up a project
+
+- Both frontend & backend will start via `npm start` command in their respective folder directory.
+- The frontend will start on `http://localhost:3000/`
+- The backend will start on `http://localhost:8000/`
+
+## API
 
 ### FindAll
 
 Just specify LIMIT in the search bar:
 
 `LIMIT number (OPTIONAL: OFFSET number)`
+![find-all img](../../images/find-all.png)
 
 ### FindOne
 
