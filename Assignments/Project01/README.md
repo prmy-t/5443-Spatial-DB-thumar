@@ -31,9 +31,15 @@ You can search the Airport by name, city, country, 3-code, 4-code,
 Just type in the search bar:
 
 `column_name = value`
+![find-all img](../../images/find-one.png)
 
 ### FindClosest (by lat & lon)
 
 Just type lat & lon values in the search bar:
 
 `lat = value & lon = value`
+![find-all img](../../images/find-closest.png)
+
+## Providing invalid input will result an Error
+
+![find-all img](../../images/invalid-input.png)
