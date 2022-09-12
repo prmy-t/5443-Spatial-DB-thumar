@@ -2,7 +2,7 @@
 
 - This project contains Frontend & Backend.
 - The backend is written in Node.js with supporting packages like Express.js and pg.
-- The frontend is written in React.js.
+- The frontend is written in React.js with supporting packages like react-bootstrap.
 
 ## Installation
 
