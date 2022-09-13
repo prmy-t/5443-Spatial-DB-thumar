@@ -33,7 +33,6 @@ export default function App() {
     setIsLoading(true);
     const res = await fetch(`http://localhost:8000/?${query}`);
     const data = await res.json();
-    console.log(data);
     if (data.length < 1) {
       setError("No Data Found !");
       setShow(true);

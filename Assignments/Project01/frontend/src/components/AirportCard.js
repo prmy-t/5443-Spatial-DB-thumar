@@ -8,6 +8,15 @@ export default function AirportCard(props) {
         {airport.id}: {airport.name}
       </Card.Header>
       <Card.Body>
+        {airport.distance && (
+          <Card.Text>
+            <Row>
+              <Col md={6}>
+                <b>Distance:</b> {airport.distance.toFixed(2)} Miles
+              </Col>
+            </Row>
+          </Card.Text>
+        )}
         <Card.Text>
           <Row>
             <Col md={6}>
@@ -20,10 +29,10 @@ export default function AirportCard(props) {
         </Card.Text>
         <Card.Text>
           <Row>
-            <Col className="h6">
+            <Col>
               <b> 3-Code:</b> {airport["3-code"]}
             </Col>
-            <Col className="h6">
+            <Col>
               <b> 4-Code:</b> {airport["4-code"]}
             </Col>
           </Row>

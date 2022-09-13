@@ -74,7 +74,11 @@ app.get("/", (req, res) => {
     let [v1, v2] = [...values];
     v1 = v1.trim();
     v2 = v2.trim();
-    query = `SELECT id,A.geom,ST_Distance (A.geom, ST_SetSRID(ST_Point (${v2}, ${v1}) ,4326)) as distance, name, city, country,"3-code","4-code",lat, lon FROM airports as A WHERE ST_Distance (A.geom, ST_SetSRID(ST_Point (${v2}, ${v1}), 4326)) < 10000 order by distance LIMIT 1`;
+    query = `SELECT * from (
+SELECT *, ST_DistanceSphere(ST_MakePoint(${v2}, ${v1}),ST_MakePoint(lon, lat))*0.000621371 as distance from airports A)
+as innerTable ORDER BY distance asc LIMIT 1`;
+
+    // `SELECT id,A.geom,ST_Distance (A.geom, ST_SetSRID(ST_Point (${v2}, ${v1}) ,4326)) as distance, name, city, country,"3-code","4-code",lat, lon FROM airports as A WHERE ST_Distance (A.geom, ST_SetSRID(ST_Point (${v2}, ${v1}), 4326)) < 10000 order by distance LIMIT 1`;
   } else {
     let k1 = keys[0].trim();
     let v1 = values[0].trim();
