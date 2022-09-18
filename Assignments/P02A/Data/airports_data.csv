@@ -1,0 +1,6 @@
+"id","name","city","country","3-code","4-code","geom","lat","lon","elevation","gmt","tz_short","timezone","type"
+1,"Goroka Airport","Goroka","Papua New Guinea","GKA","AYGA","0101000020E6100000CED204408B2C624069F60680A65318C0",-6.081689835,145.391998300,5282,"10","U","Pacific/Port_Moresby","airport"
+2,"Madang Airport","Madang","Papua New Guinea","MAG","AYMD","0101000020E6100000D7DF12803F396240294CF9BF0CD414C0",-5.207079887,145.789001500,20,"10","U","Pacific/Port_Moresby","airport"
+3,"Mount Hagen Kagamuga Airport","Mount Hagen","Papua New Guinea","HGU","AYMH","0101000020E610000045AEE5DF78096240FBBC0000A24E17C0",-5.826789856,144.296005200,5388,"10","U","Pacific/Port_Moresby","airport"
+4,"Nadzab Airport","Nadzab","Papua New Guinea","LAE","AYNZ","0101000020E6100000BE141E343B57624098A608707A471AC0",-6.569803000,146.725977000,239,"10","U","Pacific/Port_Moresby","airport"
+5,"Port Moresby Jacksons International Airport","Port Moresby","Papua New Guinea","POM","AYPY","0101000020E610000096E2F43F0A676240ED6A01C002E322C0",-9.443380356,147.220001200,146,"10","U","Pacific/Port_Moresby","airport"
