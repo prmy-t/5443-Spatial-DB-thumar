@@ -9,4 +9,4 @@
 6. airports
 
 * create table script of every table is provided into the SQL folder.
-* 5-rows of every table is showen in the Data folder.
+* 5-rows of every table is shown in the Data folder.
