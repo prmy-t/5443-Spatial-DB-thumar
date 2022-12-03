@@ -1,17 +1,30 @@
-# Description
+# Missile Command
 
-## missiles_info
+- test_api contains all the APIs.
+- function.py works as a helper, where all the functions are defined.
 
-- it contains 3 columns name, blast, speed.
-- All of that are predefined into the database.
-- We will join this table with newly generated missiles.
+## APIs
 
-## missiles_position
+### /REGESTER:
 
-- It contains randomly generated missiles from server.
-- It shows the starting and ending points of the line.
-- Scripts of generating points and inserting data contains variables and functions because, those things are being handled by the server.
+- initial api
 
-## Screenshot of the frontend, which shows the generated missiles.
+### /START:
 
-![generated missiles img](./images/generated-missiles.png)
+\*inform server to start firing missiles with providing team_id.
+
+### /calculate_area:
+
+- returns Area in sqm and center point location.
+
+### /show_bounding_box:
+
+- Returns the points of bounding box polygon
+
+### /create_batteries:
+
+- returns the 5 battery points
+
+### /determine_hits:
+
+- creates a table in postgres with the prediction of landing geometry, expected time and boolean if it is hitting to the region or not.
