@@ -5,7 +5,10 @@
 CREATE TABLE IF NOT EXISTS public.bbox
 (
     box geometry,
-    center geometry
+    section text COLLATE pg_catalog."default",
+    center geometry,
+    width integer,
+    height integer
 )
 
 TABLESPACE pg_default;
