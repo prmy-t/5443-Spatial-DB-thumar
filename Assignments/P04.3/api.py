@@ -24,6 +24,7 @@ async def docs_redirect():
     """Api's base route that displays the information created above in the ApiInfo section."""
     return RedirectResponse(url="/docs")
 
+# At the start generate game_id & fleet_id
 @app.get("/start")
 def start():
     global game_id, fleet_id
@@ -32,12 +33,14 @@ def start():
 
     return f"Game_id: {game_id}, Fleet_id: {fleet_id}"
 
+# generate fleet & will save it to the postgres
 @app.get("/Generate_fleet")
 def generate_fleet():
     fleet = requests.get("https://battleshipgame.fun:8080/generate_fleet/?fleetName=noobmaster69&hash=217323467714198537483354125622023591364").json()
     
     return save_ships_to_postgres(fleet)
-    
+
+# will generate random location on the given section and assign it to the ships.
 @app.get("/get_battle_location")
 def get_battle_location():
     location = requests.get(f"""https://battleshipgame.fun:8080/get_battle_location/?hash=217323467714198537483354125622023591364&game_id={game_id}""").json()
@@ -47,16 +50,19 @@ def get_battle_location():
     generate_point(location["section"])
     return "Location assigned to ships."
 
+# Post the ship data to the server 
 @app.get("/steam_to_battle")
 def steam_to_battle():
     final_product = show_final_product()
     res = requests.post("https://battleshipgame.fun:8080/steam_to_battle?hash=217323467714198537483354125622023591364", data= final_product).json()
     return res
 
+# Create a bounding box from given coordinates.
 @app.get("/Specify_Bbox")
 def specify_Bbox():
     """ Give the input of coordinates in the formate of: lon, lat"""
     return create_Bbox()
+
 
 @app.get("/Radar_Sweep")
 def radar_sweep():
@@ -67,7 +73,16 @@ def radar_sweep():
 @app.get("/moveGuns")
 def moveGuns(ship_id,gun_id,gun_position):
     move_guns(ship_id,gun_id,gun_position)
-    
+
+@app.get("/change_fleet_direction")
+def change_fleet_direction(bearing):
+    changeFleetDirection(bearing)
+
+@app.get("change_speed_direction")
+def change_speed_direction(ship_id, speed, bearing):
+    changeSpeedDirection(ship_id, speed, bearing)
+
+
 @app.get("/generate-final-product")
 def final_product():
     return show_final_product()

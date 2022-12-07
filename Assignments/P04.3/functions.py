@@ -189,6 +189,23 @@ def generate_ship_location(ship_count, sector_index):
     cur.execute(sql_assign_location)
     return "Location generated."
 
+def changeSpeedDirection(ship_id, speed, bearing):
+    sql = f"""
+     UPDATE ships
+     SET speed = {speed}, bearing = {bearing}
+     WHERE ship_id = {ship_id}
+    """
+
+    cur.execute(sql)
+
+    return "speed and direction has been changed"
+
+def changeFleetDirection(bearing):
+    sql = f"""UPDATE ships SET bearing = {bearing}"""
+    cur.execute(sql)
+
+    return "Fleet direction has been changed"
+
 def move_guns(ship_id, gun_id, pos):
     sql = f"""
         UPDATE gun_armaments
