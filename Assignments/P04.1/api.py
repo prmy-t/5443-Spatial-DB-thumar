@@ -1,9 +1,6 @@
-from time import sleep
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 import uvicorn
-import json
-import requests
 
 from functions import *
 

@@ -21,8 +21,6 @@ def create_Bbox(UpperLeft, lowerRight, section, width, height):
     ulLat = UpperLeft["lat"]
     lrLon = lowerRight["lon"]
     lrLat = lowerRight["lat"]
-
-    
     sql = f"""DROP TABLE if exists Bbox; 
             create table Bbox(box geometry, section text, center geometry, width int, height int);
             INSERT INTO Bbox(box, section, width, height)
@@ -35,8 +33,6 @@ def create_Bbox(UpperLeft, lowerRight, section, width, height):
             UPDATE Bbox set center = ST_SetSRID(ST_Centroid(box),4326);
     """
     cur.execute(sql)
-    # cur.execute("""select ship_id, st_y(st_astext(location)), st_x(st_astext(location)) from ships;""")
-    # data = cur.fetchall()[0]
     return "Bbox created."
 
 def save_ships_to_postgres(ships):
@@ -75,44 +71,7 @@ def save_ships_to_postgres(ships):
 
         cur.execute('INSERT INTO ship_armors VALUES(%s, %s, %s)',(ship_id, hull, deck))
 
-    # with open("ships.json") as file:
-    #     json_file = json.load(file)
-    #     for ship in json_file:
-            
-    #         # SHIPS TABLE
-    #         ship_id = ship["id"]
-    #         category = ship["category"]
-    #         shipClass = ship["shipClass"]
-    #         length = ship["length"]
-    #         width = ship["width"]
-    #         speed = ship["speed"]
-    #         turn_radius = ship["turn_radius"]
-    #         location = ship["location"]
-
-
-    #         #SHIP_ARMOR
-    #         ship_id = ship["id"]
-    #         hull = ship["armor"]["hull"]
-    #         deck = ship["armor"]["deck"]
-
-    #         #SHIP_armament
-    #         for armament in ship["armament"]:
-    #             gun_name = armament["gun"]["name"],
-    #             gun_info = armament["gun"]["info"],
-    #             ammo_type = armament["gun"]["ammoType"],
-                
-    #             ammo = armament["gun"]["ammo"],
-    #             gun_rof = armament["gun"]["rof"],
-    #             gun_propellant = armament["gun"]["propellant"]
-    #             pos = armament["pos"]
-    #             cur.execute('INSERT INTO ship_armaments VALUES(%s,%s,%s,%s,%s,%s,%s,%s)', (ship_id, gun_name, gun_info, [json.dumps(ammo_type)], [json.dumps(ammo)], gun_rof, gun_propellant, pos))
-
-    #         cur.execute('INSERT INTO ships(ship_id, identifier, category,shipClass,length,width, torpedoLaunchers, speed,turn_radius,location) VALUES(%s,%s,%s,%s,%s,%s,%s,%s)', 
-    #         (ship_id, identifier, category, shipClass, length, width, torpedoLaunchers, speed, turn_radius, location))
-
-    #         cur.execute('INSERT INTO ship_armors VALUES(%s, %s, %s)',(ship_id, hull, deck))
-        
-    return "Data has been saved"
+    return "Fleet has been generated."
 
 
 ##Supporting Functions...
@@ -169,6 +128,9 @@ def create_ships_tables():
 
 def generate_point(section):
     
+    # cur.execute("select section from bbox;")
+    # section = cur.fetchone()[0]
+
     index = cardinalList.index(section)
     
     cur.execute("select count(*) from ships;")
@@ -188,7 +150,7 @@ def generate_point(section):
     UPDATE region set geom = ST_MakePolygon(ST_MakeLine(ARRAY[p1, p2, p3, p1]));
     UPDATE region set center = ST_SetSRID(ST_Centroid(geom),4326);
     """)
-    return generate_ship_location(ship_count, index)
+    generate_ship_location(ship_count, index)
 
 def generate_ship_location(ship_count, sector_index):
     ship_deployed = 0
@@ -225,8 +187,17 @@ def generate_ship_location(ship_count, sector_index):
     
     sql_assign_location = """update ships set location = tp.point, bearing = tp.bearing from temp_points tp where tp.id = table_id;"""
     cur.execute(sql_assign_location)
-    return "location generated"
+    return "Location generated."
 
+def move_guns(ship_id, gun_id, pos):
+    sql = f"""
+        UPDATE gun_armaments
+        SET pos = {pos}
+        WHERE ship_id = {ship_id};
+    """
+    cur.execute(sql)
+    return "moved"
+    
 def show_final_product():
     cur.execute("""
         select 
