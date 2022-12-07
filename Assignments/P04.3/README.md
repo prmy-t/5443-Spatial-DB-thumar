@@ -13,7 +13,8 @@
 - It works as a console menu to perform various actions.
 - Library used: [Pick](https://github.com/wong2/pick)
 - It dose not cover all the functionality.
-  ![ss1](./img/ss1.png) ![ss2](./img/ss2.png)
+- ![ss1](./img/ss1.png)
+- ![ss2](./img/ss2.png)
 
 ## Communication
 
