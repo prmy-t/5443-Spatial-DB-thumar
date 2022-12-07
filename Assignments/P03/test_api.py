@@ -185,7 +185,7 @@ def radar_sweep():
 def create_shp_file(tableName):
     return to_shp_file(tableName, tableName)
 
-@app.get("/RESET-Game")
+@app.get("/RESET_Game")
 def reset():
     reset = requests.get("http://missilecommand.live:8080/RESET").json()
     return reset['Finished'] 
