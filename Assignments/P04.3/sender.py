@@ -9,8 +9,8 @@ import json
 def help():
     print("=" * 60)
     print("Commands are formatted like the following examples: ")
-    print('    stalin.fire ~ {"lon":2.345,"lat":10.1234,"angle":30.23,"kg":1200}')
-    print("    broadcast ~ Stalin is going down!")
+    print('   stalin.fire ~ {"lon":2.345,"lat":10.1234,"angle":30.23,"kg":1200}')
+    print("   broadcast ~ Stalin is going down!")
     print("The tildes (~) are used as an easy character to split on!")
     print("=" * 60)
 

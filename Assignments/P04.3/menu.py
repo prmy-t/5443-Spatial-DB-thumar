@@ -16,7 +16,7 @@ def main_menu():
     return selected[0]
 
 def register_menu():
-    title = "You have already registered."
+    title = "You have already registered. "
     options = ["Go back"]
     selected = pick(options, title, "👉🏻")
     return selected[0]

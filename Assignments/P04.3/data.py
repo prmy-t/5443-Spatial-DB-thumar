@@ -48,7 +48,6 @@ data = [
     "returns": "{Large json file with all of your fleet data.}"
   },
   {
-    
     "item": "Get Battle Location",
     "description": "Sends back the bounding box and cardinal location in the bbox for you to move/position your fleet.",
     "params": {
